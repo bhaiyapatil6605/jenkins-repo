@@ -3,8 +3,7 @@ pipeline {
     tools {
         git 'Default'
         maven 'maven'
-        tool name: 'SonarScannermsvuild', type: 'hudson.plugins.sonar.MsBuildSQRunnerInstallation'
-        tool name: 'sonarqube_scaner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+        
     }
     stages {
         stage('Pull Git Codes') {
