@@ -15,10 +15,10 @@ pipeline {
         stage('Test on SonarQube') {
             steps {
                 script {
-                        mvn clean verify sonar:sonar \
-                        -Dsonar.projectKey=demo \
-                        -Dsonar.host.url=http://localhost:32768 \
-                        -Dsonar.login=sqp_557cad7383597fa1f537d12188539e11203deefa
+                        sh '''mvn clean verify sonar:sonar \\
+                        -Dsonar.projectKey=demo \\
+                        -Dsonar.host.url=http://localhost:32768 \\
+                        -Dsonar.login=sqp_557cad7383597fa1f537d12188539e11203deefa'''
                     }
                 }
             }
