@@ -15,10 +15,10 @@ pipeline {
         stage('Test on SonarQube') {
             steps {
                 script {
-                        withCredentials([string(credentialsId: 'sonarqube', variable: 'sonarqube')]) {
-                        sh 'mvn clean verify sonar:sonar \
+                        mvn clean verify sonar:sonar \
                         -Dsonar.projectKey=demo \
-                        -Dsonar.host.url=http://localhost:32768'
+                        -Dsonar.host.url=http://localhost:32768 \
+                        -Dsonar.login=sqp_557cad7383597fa1f537d12188539e11203deefa
                     }
                 }
             }
