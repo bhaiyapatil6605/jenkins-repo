@@ -29,7 +29,7 @@ pipeline {
         stage('Deploy on Tomcat') {
             steps {
                 script {
-                    sh 'cp -r /var/lib/jenkins/workspace/ci-job/target/*.war /opt/apache-tomcat-8.5.99/webapps/'
+                    sh 'cp -r /var/lib/jenkins/workspace/demo/target/*.war /opt/apache-tomcat-8.5.99/webapps/'
                     //copy
                 }
             }
