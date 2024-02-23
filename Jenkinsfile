@@ -17,8 +17,8 @@ pipeline {
                 script {
                     withCredentials([string(credentialsId: 'sonarqube', variable: 'sonarqube')]) {
                         mvn clean verify sonar:sonar \
-                    -Dsonar.projectKey=demo \
-                    -Dsonar.host.url=http://localhost:32768 \
+                        -Dsonar.projectKey=demo \
+                        -Dsonar.host.url=http://localhost:32768 \
                     }
                 }
             }
