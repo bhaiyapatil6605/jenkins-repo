@@ -15,7 +15,7 @@ pipeline {
         stage('Test on SonarQube') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'sonarqube', variable: 'sonarqube')]) {
+                        withCredentials([string(credentialsId: 'sonarqube', variable: 'sonarqube')]) {
                         sh 'mvn clean verify sonar:sonar \
                         -Dsonar.projectKey=demo \
                         -Dsonar.host.url=http://localhost:32768'
