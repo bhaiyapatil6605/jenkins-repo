@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy on Tomcat') {
             steps {
                 script {
-                    sh 'cp -r /var/lib/jenkins/workspace/deploy/target /opt/apache-tomcat-8.5.99/webapps/'
+                    sh 'cp -r /var/lib/jenkins/workspace/ci-job/target /opt/apache-tomcat-8.5.99/webapps/'
                 }
             }
         }
