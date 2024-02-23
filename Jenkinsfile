@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        tool name: 'Default', type: 'git'
+        tool name: 'git', type: 'git'
         tool name: 'maven', type: 'maven'
         tool name: 'SonarScannermsvuild', type: 'hudson.plugins.sonar.MsBuildSQRunnerInstallation'
         tool name: 'sonarqube_scaner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
