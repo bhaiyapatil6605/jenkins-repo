@@ -1,10 +1,10 @@
 pipeline {
     agent any
     tools {
-        tool name: 'git', type: 'git'
-        tool name: 'maven', type: 'maven'
-        tool name: 'SonarScannermsvuild', type: 'hudson.plugins.sonar.MsBuildSQRunnerInstallation'
-        tool name: 'sonarqube_scaner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+        git 'git'
+        maven 'maven'
+        msBuild 'SonarScannermsvuild'
+        sonarqube 'sonarqube_scaner'
     }
     stages {
         stage('Pull Git Codes') {
