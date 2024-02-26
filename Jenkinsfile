@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Pull Git Codes') {
             steps {
-                git 'https://github.com/deepak-umre/jenkins_ci.git'
+                git 'https://github.com/bhaiyapatil6605/jenkins-repo.git'
             }
         }
         stage('Build with Maven') {
@@ -16,13 +16,6 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage('Test on SonarQube') {
-            steps {
-                script {
-                    sh '''mvn clean verify sonar:sonar \
-                    -Dsonar.projectKey=demo \
-                    -Dsonar.host.url=http://localhost:9000 \
-                    -Dsonar.login=sqp_46489272405d97111af92c42c1324a64ab9f6d3b'''
                 }
             }
         }
