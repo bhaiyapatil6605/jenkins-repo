@@ -1,29 +1,56 @@
 pipeline {
     agent any
-    tools {
-        git 'Default'
-        maven 'maven'
-        
-    }
     stages {
-        stage('Pull Git Codes') {
+        stage('Pull') {
             steps {
-                git 'https://github.com/bhaiyapatil6605/jenkins-repo.git'
+                sh 'git init '
+                echo "Successful pull from Git"
+                git 'https://github.com/deepak-umre/dockerfile_tomcat.git'
             }
         }
-        stage('Build with Maven') {
+        stage('Build') {
+            agent {
+                label 'docker'
+            }
             steps {
-                sh 'mvn clean install'
+                echo "Building with Maven"
+                sh 'mvn clean package'
             }
         }
+    
+        stage('creating tomcat image Tomcat') {
+            agent {
+                label 'docker'
+            }
+            steps {
+                script {
+                    sh '''cp -r /var/lib/jenkins/workspace/demo/target/*.war .
+                    docker build -t ashitoshpatil8981/tomcat8 . 
+                    docker login 
+                    docker push ashitoshpatil8981/tomcat8:latest'''
                 }
             }
         }
-        stage('Deploy on Tomcat') {
+        stage('build image on k8 ') {
+            agent {
+                label 'docker'
+            }
             steps {
                 script {
-                    sh 'cp -r /var/lib/jenkins/workspace/demo/target/*.war /opt/apache-tomcat-8.5.99/webapps/'
-                    //copy
+                    sh 'kubectl apply -f deployment.yaml'
+                }
+            }
+        }
+        stage('getting info') {
+            agent {
+                label 'docker'
+            }
+            steps {
+                script {
+                    sh '''kubectl get pods -o wide 
+                    kubectl get nodes -o wide 
+                    kubectl get svc -o wide 
+                    ls /var/lib/jenkins/workspace/deploy/target/'''
                 }
             }
         }
