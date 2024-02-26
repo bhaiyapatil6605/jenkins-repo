@@ -24,7 +24,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh '''cp -r /var/lib/jenkins/workspace/demo/target/*.war .
+                    sh '''cp -r /var/lib/jenkins/workspace/demo/target/*.war webapps/
                     docker build -t ashitoshpatil8981/tomcat8 . 
                     docker login 
                     docker push ashitoshpatil8981/tomcat8:latest'''
